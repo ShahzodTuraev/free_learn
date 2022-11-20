@@ -1,19 +1,38 @@
 import React, {createRef} from 'react';
-import {Container, Title, Box, Desc, DescWrapper} from './style'
+import {
+    Container,
+    Button,
+    ActiveButton,
+    Rotate,
+} from './style';
+import {ThemeProvider, createGlobalStyle} from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+body{
+    background: ${(props)=> props.theme.bg};
+    color: ${(props)=> props.theme.cl};
+}
+`;
 
 class State extends React.Component {
+    state = {
+        light: false,
+    }
     render(){
+        const theme = {
+            bg: this.state.light ? 'white' : 'black',
+            cl: this.state.light ? 'black' : 'white',
+
+        }
         return(
-            <Container>
-                <Title>Hello Style Components</Title>
-                <DescWrapper>
-                    <Desc left>Description for the new Topic-1</Desc>
-                    <Desc>Description for the new Topic-2</Desc>
-                </DescWrapper>
-                <Box bg='yellow' type='large'>Large</Box>
-                <Box bg='red' type='medium'>Medium</Box>
-                <Box bg='coral' type='small'>Small</Box>
-            </Container>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <h1>Theme provider</h1>
+                <Button>Click me</Button>
+                <ActiveButton>Active me</ActiveButton>
+                <Rotate>rotate</Rotate>
+                <button onClick={()=>this.setState({light: !this.state.light})}>Change Mode</button>
+            </ThemeProvider>
         )
     }
    

@@ -1,55 +1,51 @@
-import styled, {css} from 'styled-components'
+import styled, {css, keyframes} from 'styled-components'
 
-export const Container = styled('div')`
-    /* display: flex;
-    justify-content: center; */
-    color: blue;
-    padding: 20px;
+export const Container = styled.div`
+margin: 20px;
+`;
+
+const rotate = keyframes`
+from{
+    transform: rotate(0deg);
+}
+to{
+    transform: rotate(360deg);
+}
 `;
 
 const common = css`
-     color: blue;
-    text-align: center;
-    font-size: 30px;
-    `
-
-export const Title = styled.h1`
-   ${common};
-   `;
-
-export const Desc =styled.h1`
-   ${common};
-   font-size: 20px;
-   font-style: italic;
-   color: ${({left})=>(left ? 'red': 'green')};
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+width: 200px;
+height: 40px;
+background: coral;
+border-radius: 8px;
+margin: 20px;
+cursor: pointer;
+:active{
+    transform: scale(0.97);
+}
+`;
+export const Button = styled.div`
+${common}
 `;
 
-export const DescWrapper = styled.div`
-    display: flex;
-    justify-content: space-evenly;
+export const ActiveButton =styled(Button)`
+height: 50px;
+width: 180px;
+background: blue;
 `;
 
-const getSize = (props) => {
-    switch (props.type) {
-        case 'large':
-            return '200px';
-        case 'medium':
-            return '150px';
-        case 'small':
-            return '100px';
-        default:
-            return '80px';
-    }
-};
-
-export const Box = styled.div`
-    display: flex;
-    background: ${(props)=>props.bg};
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    width: ${getSize};
-    height: ${getSize};
-    border: 2px solid green;
-    margin: 20px;
-`;
+export const Rotate = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100px;
+height: 100px;
+border-radius: 50%;
+border: 2px solid coral;
+color: blue;
+animation: ${rotate} 2s linear infinite;
+`
