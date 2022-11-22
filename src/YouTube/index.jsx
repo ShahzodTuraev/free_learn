@@ -14,7 +14,7 @@ export default class YouTube extends Component {
                     <Icons.Logo src={logo} alt='logo'/>
                 </Category>
                 <Category>
-                    <Input placeholder='search'/>
+                    <Input placeholder=' search'/>
                     <Icons.Search/>
                 </Category>
                 <Category end>
