@@ -1,33 +1,25 @@
-import React, {Component} from "react";
-import {Container, Wrapper, Category, Icons, Input, User} from './style';
+import React, {Component, useState} from "react";
 import Sidebar from './Sidebar';
 import Body from './Body'
-import logo from '../assets/imgs/logo.png';
-import account from '../assets/imgs/account.png';
+import {list} from './students'
 
-export default class YouTube extends Component {
-    render(){
-        return <Container>
-            <Wrapper>
-                <Category>
-                    <Icons.Burger/>
-                    <Icons.Logo src={logo} alt='logo'/>
-                </Category>
-                <Category>
-                    <Input placeholder=' search'/>
-                    <Icons.Search/>
-                </Category>
-                <Category end>
-                    <Icons.Video/>
-                    <Icons.Functions/>
-                    <Icons.Bell/>
-                    <User src={account} alt='user'/>
-                </Category>
-            </Wrapper>
-            <Container flex>
-                <Sidebar/>
-                <Body/>
-            </Container>
-        </Container>
-    }
+
+export const YouTube =()=>{
+
+    const[data, setData] = useState(list);
+
+    const onDelete =(id)=>{
+        let res = data.filter(vl => vl.id!== id);
+        setData(res)
+    };
+
+    return(
+        <>
+        <div>
+            <Sidebar data={data}/>
+            <Body data={data} onDelete={onDelete}/>
+        </div>
+        </>
+    )
 }
+export default YouTube
